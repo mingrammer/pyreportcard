@@ -1,0 +1,6 @@
+# Compiled source files
+__pycache__/
+*.pyc
+
+# Virtualenv
+.env
