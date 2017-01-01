@@ -1,5 +1,5 @@
 """
-A collection of ocnfiguration constants
+A collection of configuration constants
 """
 CLONE_TMP_DIR = 'tmp'
 
