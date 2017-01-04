@@ -1,5 +1,5 @@
 """
-A linting analyzer for checking PEP8 and Pyflakes warnings
+A source code linting analyzer for checking PEP8 and Pyflakes warnings
 """
 from glob import glob
 import os
