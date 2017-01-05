@@ -18,6 +18,7 @@ We don't provide installation and running instructions yet. When finished, we'll
 * [X] Supports checking the license file
 * [ ] Supports calculating the test coverage and shows test results
 * [ ] Supports checking the compatibility of Python 2 and 3
+* [ ] Supports checking the security issues
 * [X] Provides a grade system
 * [ ] Serves it as web service
 * [ ] Provides ranking system
