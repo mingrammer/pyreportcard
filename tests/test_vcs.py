@@ -63,7 +63,7 @@ class RepositoryTest(unittest.TestCase):
         self.assertEqual(is_cached(self.repo), True)
 
     def test_clone(self):
-        cloned_path = clone(self.repo.url)
+        cloned_path = clone(self.repo)
         self.assertEqual(cloned_path, os.path.join(config.CLONE_TMP_DIR, self.repo.name))
 
     def test_clone_fail(self):
