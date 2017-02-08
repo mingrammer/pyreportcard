@@ -118,7 +118,7 @@ def clone(repo):
                             cwd=tmp_dir)
 
     try:
-        _, err = proc.communicate(timeout=10)
+        _, err = proc.communicate(timeout=config.CLONE_TIMEOUT)
     except subprocess.TimeoutExpired:
         proc.kill()
         raise Exception(constants.ERROR_CLONE_TIMEOUT_EXPIRED)
