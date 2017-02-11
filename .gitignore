@@ -5,5 +5,8 @@ __pycache__/
 # Virtualenv
 .env
 
+# Secret information
+config_secret.py
+
 # VScode
 tags
