@@ -2,8 +2,8 @@ import os
 import shutil
 import unittest
 
-import config
-from helper import get_repo_collection
+from config import Config
+from helpers.db import get_repo_collection
 from vcs.repository import (GitRepository,
                             tokenize_url_and_get_repo,
                             cache,
@@ -23,12 +23,12 @@ class RepositoryTest(unittest.TestCase):
 
     def tearDown(self):
         self.repositories.delete_one({'url': self.repo.url})
-        if os.path.isdir(config.CLONE_TMP_DIR):
-            cloned_path = os.path.join(config.CLONE_TMP_DIR, self.repo.name)
+        if os.path.isdir(Config.CLONE_TMP_DIR):
+            cloned_path = os.path.join(Config.CLONE_TMP_DIR, self.repo.name)
             if os.path.isdir(cloned_path):
                 shutil.rmtree(cloned_path)
             else:
-                shutil.rmtree(config.CLONE_TMP_DIR)
+                shutil.rmtree(Config.CLONE_TMP_DIR)
 
     def test_tokenize_url_and_get_repo(self):
         testcases = [
@@ -64,7 +64,7 @@ class RepositoryTest(unittest.TestCase):
 
     def test_clone(self):
         cloned_path = clone(self.repo)
-        self.assertEqual(cloned_path, os.path.join(config.CLONE_TMP_DIR, self.repo.name))
+        self.assertEqual(cloned_path, os.path.join(Config.CLONE_TMP_DIR, self.repo.name))
 
     def test_clone_fail(self):
         self.repo.url = 'https://github.com/mingrammer/null'
@@ -72,7 +72,7 @@ class RepositoryTest(unittest.TestCase):
             clone(self.repo.url)
 
     def test_clear(self):
-        os.mkdir(config.CLONE_TMP_DIR)
-        os.mkdir(os.path.join(config.CLONE_TMP_DIR, config.CLONE_TMP_DIR))
-        clear(config.CLONE_TMP_DIR)
-        self.assertEqual(os.path.isdir(config.CLONE_TMP_DIR), False)
+        os.mkdir(Config.CLONE_TMP_DIR)
+        os.mkdir(os.path.join(Config.CLONE_TMP_DIR, Config.CLONE_TMP_DIR))
+        clear(Config.CLONE_TMP_DIR)
+        self.assertEqual(os.path.isdir(Config.CLONE_TMP_DIR), False)

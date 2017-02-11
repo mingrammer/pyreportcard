@@ -8,9 +8,9 @@ import os
 import shutil
 import subprocess
 
-import config
+from config import Config
 import constants
-from helper import get_repo_collection
+from helpers.db import get_repo_collection
 
 
 class GitRepository(object):
@@ -125,7 +125,7 @@ def clone(repo):
     Returns:
         A tmp directory of repository if successful, raise exception otherwise
     """
-    tmp_dir = config.CLONE_TMP_DIR
+    tmp_dir = Config.CLONE_TMP_DIR
     if not os.path.isdir(tmp_dir):
         os.mkdir(tmp_dir)
 
@@ -134,7 +134,7 @@ def clone(repo):
                             cwd=tmp_dir)
 
     try:
-        _, err = proc.communicate(timeout=config.CLONE_TIMEOUT)
+        _, err = proc.communicate(timeout=Config.CLONE_TIMEOUT)
     except subprocess.TimeoutExpired:
         proc.kill()
         raise Exception(constants.ERROR_CLONE_TIMEOUT_EXPIRED)
