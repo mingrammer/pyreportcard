@@ -1,13 +1,12 @@
-"""
-A collection of configuration constants
-"""
-CLONE_TMP_DIR = 'tmp'
+from config_secret import SecretConfig
 
-CLONE_TIMEOUT = 15
 
-MONGO_DB = {
-    'HOST': 'localhost',
-    'PORT': 27017,
-    'DB_NAME': 'reportcard',
-    'REPOSITORIES_COLLECTION': 'repositories'
-}
+class Config:
+    # MongoDB config
+    MONGO_DBNAME = SecretConfig.MONGO_DBNAME
+    MONGO_HOST = SecretConfig.MONGO_HOST
+    MONGO_PORT = SecretConfig.MONGO_PORT
+
+    # Cloning config
+    CLONE_TMP_DIR = 'tmp'
+    CLONE_TIMEOUT = 15
