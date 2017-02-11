@@ -28,11 +28,11 @@ class GitRepository(object):
     latest_hash = None
     analysis_results = {}
 
-    def __init__(self, url=None, username=None, name=None):
+    def __init__(self, url=None, username=None, name=None, latest_hash=None):
         self.url = url
         self.username = username
         self.name = name
-        self.latest_hash = self._get_latest_commit_hash()
+        self.latest_hash = latest_hash
 
     def to_document(self):
         """Make document dict of instance to store to db"""
@@ -51,16 +51,28 @@ class GitRepository(object):
     def update_last_latest_hash(self):
         self.last_latest_hash = self.latest_hash
 
-    def _get_latest_commit_hash(self):
-        proc = subprocess.Popen(['git', 'ls-remote', self.url],
-                                stdout=subprocess.PIPE)
-        output = subprocess.check_output(['grep', 'HEAD'], stdin=proc.stdout)
-        output = subprocess.check_output(['cut', '-f', '1'], input=output)
-        hash_string = output.strip().decode('utf-8')
-        return hash_string
+
+def get_latest_commit_hash(url):
+    """Get the latest commit hash from a repository url
+
+    Args:
+        url: A repository url
+
+    Returns:
+        The commit hash string if successful
+
+    Raises:
+        subprocess.CalledProcessError: An error occured getting hash from remote git repository
+    """
+    proc = subprocess.Popen(['git', 'ls-remote', url],
+                            stdout=subprocess.PIPE)
+    output = subprocess.check_output(['grep', 'HEAD'], stdin=proc.stdout)
+    output = subprocess.check_output(['cut', '-f', '1'], input=output)
+    hash_string = output.strip().decode('utf-8')
+    return hash_string
 
 
-def tokenize_url_and_get_repo(url):
+def parse_repository_url(url):
     """Tokenize the url to get repository information
 
     It parses the url and returns following properties
@@ -69,20 +81,25 @@ def tokenize_url_and_get_repo(url):
     - username
 
     Args:
-        url: Repository URL
+        url: A repository URL
 
     Returns:
-        A GitRepository instance has tokenized values
+        A GitRepository instance has tokenized values if successful, None otherwise
     """
-    scheme_trimmed_url = url.split('://')[-1]
-    host_trimmed_url = scheme_trimmed_url.split(':')[-1]
-    username, name = host_trimmed_url.split('/')[-2:]
-    git_repo = GitRepository(
-        url=url,
-        username=username,
-        name=name
-    )
-    return git_repo
+    try:
+        commit_hash = get_latest_commit_hash(url)
+        scheme_trimmed_url = url.split('://')[-1]
+        host_trimmed_url = scheme_trimmed_url.split(':')[-1]
+        username, name = host_trimmed_url.split('/')[-2:]
+        git_repo = GitRepository(
+            url=url,
+            username=username,
+            name=name,
+            latest_hash=commit_hash
+        )
+        return git_repo
+    except subprocess.CalledProcessError:
+        return None
 
 
 def cache(repo):
