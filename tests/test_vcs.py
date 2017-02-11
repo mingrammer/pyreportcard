@@ -18,8 +18,7 @@ class RepositoryTest(unittest.TestCase):
         self.repo = GitRepository(
             url='https://github.com/mingrammer/sorting',
             name='sorting',
-            username='mingrammer',
-            latest_hash='hash'
+            username='mingrammer'
         )
 
     def tearDown(self):
@@ -39,7 +38,7 @@ class RepositoryTest(unittest.TestCase):
                 'username': 'mingrammer',
             },
             {
-                'url': 'ssh://git@github.com:django/django',
+                'url': 'git@github.com:django/django',
                 'name': 'django',
                 'username': 'django',
             }
@@ -56,10 +55,11 @@ class RepositoryTest(unittest.TestCase):
         self.assertEqual(repo_doc['url'], self.repo.url)
         self.assertEqual(repo_doc['name'], self.repo.name)
         self.assertEqual(repo_doc['username'], self.repo.username)
+        self.assertNotEqual(repo_doc['last_latest_hash'], None)
 
     def test_is_cache(self):
         self.assertEqual(is_cached(self.repo), False)
-        self.repositories.insert_one(self.repo.to_document())
+        cache(self.repo)
         self.assertEqual(is_cached(self.repo), True)
 
     def test_clone(self):
