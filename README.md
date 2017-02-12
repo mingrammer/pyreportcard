@@ -9,7 +9,10 @@ It will be served as web service later.
 
 ## Install and Run
 
-We don't provide installation and running instructions yet. When finished, we'll update it.
+1. Clone this repository.
+2. Run `pip install -r requirements.txt` to install all dependencies (If you don't have `pip`, install `pip` first)
+3. Run server by `python3 run.py`.
+4. Go `127.0.0.1:5000` and just use it.
 
 ## Features
  
@@ -20,11 +23,16 @@ We don't provide installation and running instructions yet. When finished, we'll
 * [ ] Supports checking the compatibility of Python 2 and 3
 * [ ] Supports checking the security issues
 * [X] Provides a grade system
+* [X] Provides a pyreportcard web server
 * [ ] Serves it as web service
 * [ ] Provides ranking system
 * [ ] Provides badge link of repository grade
 
-## Libraries we used
+## Open Sources as dependencies
 * [PEP8](http://pep8.readthedocs.io/en/release-1.7.x/)
 * [Pyflakes](https://github.com/PyCQA/pyflakes)
 * [Pymongo](https://github.com/mongodb/mongo-python-driver)
+* [Flask](https://github.com/pallets/flask)
+
+## License
+The content of this project itself is licensed under the Creative Commons Attribution 3.0 license, and the underlying source code used to format and display that content is licensed under the MIT license.
