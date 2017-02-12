@@ -1,6 +1,6 @@
 from flask import Flask
-from flask.ext.bower import Bower
-from flask.ext.pymongo import PyMongo
+from flask_bower import Bower
+from flask_pymongo import PyMongo
 
 from config import Config
 
