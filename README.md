@@ -5,6 +5,8 @@ A report card for your Python application. This inspects a python project is hos
 
 *Note: In current, it is not completed yet. This project is in progress. We are ready to implement following features*
 
+You can see our planning for future versions in [here](https://github.com/mingrammer/pyreportcard/projects/1) too.
+
 *Note: There is no analysis processing routines yet. So, it have an only main page, also can not see report page now yet. I'll add it ASAP*
 
 ## Install and Run
@@ -13,6 +15,8 @@ A report card for your Python application. This inspects a python project is hos
 2. Run `pip install -r requirements.txt` to install all dependencies (If you don't have `pip`, install `pip` first)
 3. Run server by `python3 run.py`.
 4. Go `127.0.0.1:5000` and just use it.
+
+*Note: Now, you can run it on local system only, But we'll provide isolated environments using Docker for installing and running soon.*
 
 ## Screen Shot
 
