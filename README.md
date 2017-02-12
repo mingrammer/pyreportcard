@@ -1,18 +1,11 @@
 # Python Report Card
 > *Inspired by [Go Report Card](https://github.com/gojp/goreportcard)*
 
-A report card for your Python application. This inspects a python project is hosted on Github and analyze the source code quality (PEP8 and Pyflakes), existence of license file, test coverage, and some statistics of codebase. Then shows its analysis results to user.
+A report card for your Python application. This inspects a python project is hosted on Github and analyze the source code quality (PEP8 and Pyflakes), existence of license file, test coverage, and some useful statistics of whole codebase. Then shows its analysis results on web.
 
-It will be served as web service later.
+You can see our planning for future versions in [here](https://github.com/mingrammer/pyreportcard/projects/1) too.
 
-*Note: In current, it is not completed yet. This project is in progress. We'll implement following features ASAP*
-
-## Install and Run
-
-1. Clone this repository.
-2. Run `pip install -r requirements.txt` to install all dependencies (If you don't have `pip`, install `pip` first)
-3. Run server by `python3 run.py`.
-4. Go `127.0.0.1:5000` and just use it.
+*Note: There is no analysis processing routines yet. So, it have an only main page, also can not see report page now yet. I'll add it ASAP*
 
 ## Screen Shot
 
@@ -26,13 +19,45 @@ It will be served as web service later.
 * [ ] Supports calculating the test coverage and shows test results
 * [ ] Supports checking the compatibility of Python 2 and 3
 * [ ] Supports checking the security issues
+* [ ] Supports customizable analyzing using own configuration file
 * [X] Provides a grade system
 * [X] Provides a pyreportcard web server
 * [ ] Serves it as web service
 * [ ] Provides ranking system
 * [ ] Provides badge link of repository grade
 
-## Open Sources as dependencies
+## Install and Run
+
+* Clone this repository.
+* Run `pip install -r requirements.txt` to install all dependencies (If you don't have `pip`, install `pip` first)
+* Install the [MongoDB](https://www.mongodb.com/) that is used for our backend database.
+* You must configure the secret values in `config_secret.py`. Firstly, copy the example secret file to create secret file by `cp config_secret.py.example config_secret.py`, and then fill out the secret values with yours.
+
+```
+class SecretConfig:
+    SECRET_KEY = '...'
+
+    MONGO_DBNAME = '...'
+    MONGO_HOST = '...'
+    MONGO_PORT = ...
+    # MONGO_USER = '...'
+    # MONGO_PASSWORD = '...'
+```
+
+* Run server by `python3 run.py`.
+* Go `127.0.0.1:5000` and just use it.
+
+*Note: Now, you can run it on local system only, But we'll provide isolated environments using Docker for installing and running soon.*
+
+## Tests
+
+*Note: We have a test code for only vcs module now. We'll add more tests for all features soon*
+
+```bash
+python3 -m unittest tests/test_vcs.py`
+```
+
+## Dependencies
 * [PEP8](http://pep8.readthedocs.io/en/release-1.7.x/)
 * [Pyflakes](https://github.com/PyCQA/pyflakes)
 * [Pymongo](https://github.com/mongodb/mongo-python-driver)
