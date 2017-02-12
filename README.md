@@ -11,15 +11,19 @@ It will be served as web service later.
 
 We don't provide installation and running instructions yet. When finished, we'll update it.
 
+## Screen Shot
+
+![main](screenshots/main.png)
+
 ## Features
- 
-* [X] Supports checking the code quality using PEP8 and Pyflakes linting tools
-* [X] Supports counting the code lines and calculates some stats
-* [X] Supports checking the license file
+
+* [x] Supports checking the code quality using PEP8 and Pyflakes linting tools
+* [x] Supports counting the code lines and calculates some stats
+* [x] Supports checking the license file
 * [ ] Supports calculating the test coverage and shows test results
 * [ ] Supports checking the compatibility of Python 2 and 3
 * [ ] Supports checking the security issues
-* [X] Provides a grade system
+* [x] Provides a grade system
 * [ ] Serves it as web service
 * [ ] Provides ranking system
 * [ ] Provides badge link of repository grade
