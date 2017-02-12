@@ -1,0 +1,76 @@
+html {
+    background: #f5f7fa;
+}
+
+body {
+    color: #69707a;
+    line-height: 1.5;
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.grey {
+    color: #69707a;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-default {
+    background: #ffffff;
+}
+
+.alert {
+    border-radius: 0;
+}
+
+.reportcard {    
+    background-image: url('../image/pyback.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.reportcard .reportcard-content {
+    padding: 120px 0;
+}
+
+.reportcard .reportcard-content .title {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 300;
+    text-shadow: 0px 0px 4px rgba(150, 150, 150, 1);
+}
+
+.reportcard .reportcard-content .input-group {
+    min-width: 360px;
+    margin: 15px auto;
+}
+
+.reportcard .reportcard-content .input-group input {
+    padding: 22px 10px;
+    font-size: 18px;
+}
+
+.reportcard .reportcard-content .input-group button {
+    padding: 10px 30px;
+    font-size: 16px;
+}
+
+.about {
+    padding: 60px 120px;
+}
+
+.about .title {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.footer {
+    padding: 40px 20px 80px;
+    background: #f5f7fa;
+    text-align: center;
+}
