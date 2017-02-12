@@ -93,8 +93,6 @@ def parse_url_and_get_repo(url):
     Returns:
         A GitRepository instance has tokenized values if successful, None otherwise
     """
-    if not is_valid_github_repository(url):
-        return None
 
     try:
         commit_hash = get_latest_commit_hash(url)
