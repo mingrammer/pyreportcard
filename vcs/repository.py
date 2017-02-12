@@ -156,7 +156,7 @@ def clone(repo):
     if not os.path.isdir(tmp_dir):
         os.mkdir(tmp_dir)
 
-    proc = subprocess.Popen(['git', 'clone', repo.url],
+    proc = subprocess.Popen(['git', 'clone', 'https://' + repo.url],
                             stdout=subprocess.PIPE,
                             cwd=tmp_dir)
 
