@@ -13,8 +13,22 @@ You can see our planning for future versions in [here](https://github.com/mingra
 
 1. Clone this repository.
 2. Run `pip install -r requirements.txt` to install all dependencies (If you don't have `pip`, install `pip` first)
-3. Run server by `python3 run.py`.
-4. Go `127.0.0.1:5000` and just use it.
+3. Install the [MongoDB](https://www.mongodb.com/) that is used for our backend database.
+4. You must configure the secret values in `config_secret.py`. Firstly, copy the example secret file to create secret file by `cp config_secret.py.example config_secret.py`, and then fill out the secret values with yours.
+
+```
+class SecretConfig:
+    SECRET_KEY = '...'
+
+    MONGO_DBNAME = '...'
+    MONGO_HOST = '...'
+    MONGO_PORT = ...
+    # MONGO_USER = '...'
+    # MONGO_PASSWORD = '...'
+```
+
+5. Run server by `python3 run.py`.
+6. Go `127.0.0.1:5000` and just use it.
 
 *Note: Now, you can run it on local system only, But we'll provide isolated environments using Docker for installing and running soon.*
 
