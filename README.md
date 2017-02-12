@@ -7,6 +7,25 @@ You can see our planning for future versions in [here](https://github.com/mingra
 
 *Note: There is no analysis processing routines yet. So, it have an only main page, also can not see report page now yet. I'll add it ASAP*
 
+## Screen Shot
+
+![main](screenshots/main.png)
+
+## Features
+
+* [x] Supports checking the code quality using PEP8 and Pyflakes linting tools
+* [x] Supports counting the code lines and calculates some stats
+* [x] Supports checking the license file
+* [ ] Supports calculating the test coverage and shows test results
+* [ ] Supports checking the compatibility of Python 2 and 3
+* [ ] Supports checking the security issues
+* [ ] Supports customizable analyzing using own configuration file
+* [X] Provides a grade system
+* [X] Provides a pyreportcard web server
+* [ ] Serves it as web service
+* [ ] Provides ranking system
+* [ ] Provides badge link of repository grade
+
 ## Install and Run
 
 * Clone this repository.
@@ -29,25 +48,6 @@ class SecretConfig:
 * Go `127.0.0.1:5000` and just use it.
 
 *Note: Now, you can run it on local system only, But we'll provide isolated environments using Docker for installing and running soon.*
-
-## Screen Shot
-
-![main](screenshots/main.png)
-
-## Features
-
-* [x] Supports checking the code quality using PEP8 and Pyflakes linting tools
-* [x] Supports counting the code lines and calculates some stats
-* [x] Supports checking the license file
-* [ ] Supports calculating the test coverage and shows test results
-* [ ] Supports checking the compatibility of Python 2 and 3
-* [ ] Supports checking the security issues
-* [ ] Supports customizable analyzing using own configuration file
-* [X] Provides a grade system
-* [X] Provides a pyreportcard web server
-* [ ] Serves it as web service
-* [ ] Provides ranking system
-* [ ] Provides badge link of repository grade
 
 ## Tests
 
