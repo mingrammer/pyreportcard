@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+        <span class="sr-only">Toggle</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href=".">Py Report Card</a>
+    </div>
+    <div class="collapse navbar-collapse" id="menu">
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="github.com/mingrammer/pyreportcard">
+        </div>
+        <button type="submit" class="btn btn-default grey">Report</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/mingrammer/pyreportcard">GitHub</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="reportcard">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}  
+  <div class="reportcard-content centered-text">
+    <div class="container">
+      <h3 class="title">Enter the your python project repository below</h3>
+      <form action="/check" method="POST">
+        <div class="input-group">
+          <input type="text" name="url" class="form-control grey" placeholder="github.com/mingrammer/pyreportcard">
+        </div>
+        <div class="input-group">
+            <button class="btn btn-default grey">Generate Report</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
