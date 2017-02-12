@@ -42,6 +42,7 @@ class SecretConfig:
 * [ ] Supports calculating the test coverage and shows test results
 * [ ] Supports checking the compatibility of Python 2 and 3
 * [ ] Supports checking the security issues
+* [ ] Supports customizable analyzing using own configuration file
 * [X] Provides a grade system
 * [X] Provides a pyreportcard web server
 * [ ] Serves it as web service
