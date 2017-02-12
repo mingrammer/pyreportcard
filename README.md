@@ -36,6 +36,14 @@ You can see our planning for future versions in [here](https://github.com/mingra
 * [ ] Provides ranking system
 * [ ] Provides badge link of repository grade
 
+## Tests
+
+*Note: We have a test code for only vcs module now. We'll add more tests for all features soon*
+
+```bash
+python3 -m unittest tests/test_vcs.py`
+```
+
 ## Open Sources as dependencies
 * [PEP8](http://pep8.readthedocs.io/en/release-1.7.x/)
 * [Pyflakes](https://github.com/PyCQA/pyflakes)
