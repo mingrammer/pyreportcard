@@ -5,7 +5,7 @@ import unittest
 from config import Config
 from helpers.db import get_repo_collection
 from vcs.repository import (GitRepository,
-                            parse_repository_url,
+                            parse_url_and_get_repo,
                             cache,
                             is_cached,
                             clone,
@@ -15,7 +15,7 @@ from vcs.repository import (GitRepository,
 class RepositoryTest(unittest.TestCase):
     def setUp(self):
         self.repositories = get_repo_collection()
-        self.repo = parse_repository_url('https://github.com/mingrammer/sorting')
+        self.repo = parse_url_and_get_repo('https://github.com/mingrammer/sorting')
 
     def tearDown(self):
         self.repositories.delete_one({'url': self.repo.url})
@@ -26,7 +26,7 @@ class RepositoryTest(unittest.TestCase):
             else:
                 shutil.rmtree(Config.CLONE_TMP_DIR)
 
-    def test_parse_repository_url(self):
+    def test_parse_url_and_get_repo(self):
         testcases = [
             {
                 'url': 'https://github.com/mingrammer/sorting',
@@ -40,7 +40,7 @@ class RepositoryTest(unittest.TestCase):
             }
         ]
         for tc in testcases:
-            repo = parse_repository_url(tc['url'])
+            repo = parse_url_and_get_repo(tc['url'])
             self.assertEqual(repo.url, tc['url'])
             self.assertEqual(repo.name, tc['name'])
             self.assertEqual(repo.username, tc['username'])

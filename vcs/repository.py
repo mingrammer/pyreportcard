@@ -72,7 +72,7 @@ def get_latest_commit_hash(url):
     return hash_string
 
 
-def parse_repository_url(url):
+def parse_url_and_get_repo(url):
     """Tokenize the url to get repository information
 
     It parses the url and returns following properties
