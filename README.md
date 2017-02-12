@@ -57,7 +57,7 @@ class SecretConfig:
 python3 -m unittest tests/test_vcs.py`
 ```
 
-## Open Sources as dependencies
+## Dependencies
 * [PEP8](http://pep8.readthedocs.io/en/release-1.7.x/)
 * [Pyflakes](https://github.com/PyCQA/pyflakes)
 * [Pymongo](https://github.com/mongodb/mongo-python-driver)
