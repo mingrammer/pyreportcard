@@ -5,8 +5,8 @@ import unittest
 from config import Config
 from helpers.db import get_repo_collection
 from vcs.repository import (GitRepository,
-                            is_valid_github_repository,
-                            parse_url_and_get_repo,
+                            parse_url,
+                            create_repository,
                             cache,
                             is_cached,
                             clone,
@@ -16,7 +16,7 @@ from vcs.repository import (GitRepository,
 class RepositoryTest(unittest.TestCase):
     def setUp(self):
         self.repositories = get_repo_collection()
-        self.repo = parse_url_and_get_repo('github.com/mingrammer/sorting')
+        self.repo = create_repository('github.com/mingrammer/sorting')
 
     def tearDown(self):
         self.repositories.delete_one({'url': self.repo.url})
@@ -27,21 +27,34 @@ class RepositoryTest(unittest.TestCase):
             else:
                 shutil.rmtree(Config.CLONE_TMP_DIR)
 
-    def test_is_valid_github_repository(self):
+    def test_parse_url(self):
         testcases = [
             {
                 'url': 'github.com/mingrammer/sorting',
-                'expect': True
+                'name': 'sorting',
+                'username': 'mingrammer'
             },
             {
-                'url': 'github.com/django/',
-                'expect': False
+                'url': 'github.com/django/django',
+                'name': 'django',
+                'username': 'django'
             }
         ]
         for tc in testcases:
-            self.assertEqual(is_valid_github_repository(tc['url']), tc['expect'])
+            username, name = parse_url(tc['url'])
+            self.assertEqual(name, tc['name'])
+            self.assertEqual(username, tc['username'])
 
-    def test_parse_url_and_get_repo(self):
+    def test_parse_url_fail(self):
+        testcases = [
+            'github.com/mingrammer/sorting/useless',
+            'github.com/django/'
+        ]
+        for tc in testcases:
+            with self.assertRaises(Exception):
+                parse_url(tc)
+
+    def test_create_repository(self):
         testcases = [
             {
                 'url': 'github.com/mingrammer/sorting',
@@ -55,7 +68,7 @@ class RepositoryTest(unittest.TestCase):
             }
         ]
         for tc in testcases:
-            repo = parse_url_and_get_repo(tc['url'])
+            repo = create_repository(tc['url'])
             self.assertEqual(repo.url, tc['url'])
             self.assertEqual(repo.name, tc['name'])
             self.assertEqual(repo.username, tc['username'])

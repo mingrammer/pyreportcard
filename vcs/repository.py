@@ -53,7 +53,37 @@ class GitRepository(object):
         self.last_latest_hash = self.latest_hash
 
 
-def get_latest_commit_hash(url):
+def parse_url(url):
+    """Tokenize the url to get username and repository name
+
+     It parses the url and returns following properties
+
+    - username
+    - name (refers to repository name)
+
+    Args:
+        url: A repository URL
+
+    Returns:
+        A tuple of username and name if successful
+
+    Raises:
+        ValueError: An error occured parsing invalid github repository URL
+    """
+    check_valid_github_repository = re.match(r'^github.com/\w+/\w+/?$', url)
+    if check_valid_github_repository is None:
+        raise ValueError('The given repository URL is not valid')
+    username, name = url.split('/')[-2:]
+    return username, name
+
+
+def _make_git_protocol_url(url):
+    username, name = parse_url(url)
+    git_protocol_url = 'git@github.com:{0}/{1}'.format(username, name)
+    return git_protocol_url
+
+
+def _get_latest_commit_hash(url):
     """Get the latest commit hash from a repository url
 
     Args:
@@ -65,7 +95,7 @@ def get_latest_commit_hash(url):
     Raises:
         subprocess.CalledProcessError: An error occured getting hash from remote git repository
     """
-    proc = subprocess.Popen(['git', 'ls-remote', 'https://' + url],
+    proc = subprocess.Popen(['git', 'ls-remote', _make_git_protocol_url(url)],
                             stdout=subprocess.PIPE)
     output = subprocess.check_output(['grep', 'HEAD'], stdin=proc.stdout)
     output = subprocess.check_output(['cut', '-f', '1'], input=output)
@@ -73,32 +103,18 @@ def get_latest_commit_hash(url):
     return hash_string
 
 
-def is_valid_github_repository(url):
-    if re.match(r'^github.com/\w+/\w+/?$', url):
-        return True
-    return False
-
-
-def parse_url_and_get_repo(url):
-    """Tokenize the url to get repository information
-
-    It parses the url and returns following properties
-
-    - name (refers to repository name)
-    - username
+def create_repository(url):
+    """Create a repository instance for given repository url
 
     Args:
         url: A repository URL
 
     Returns:
-        A GitRepository instance has tokenized values if successful, None otherwise
+        A GitRepository instance if successful, None otherwise
     """
-
     try:
-        commit_hash = get_latest_commit_hash(url)
-        scheme_trimmed_url = url.split('://')[-1]
-        host_trimmed_url = scheme_trimmed_url.split(':')[-1]
-        username, name = host_trimmed_url.split('/')[-2:]
+        commit_hash = _get_latest_commit_hash(url)
+        username, name = parse_url(url)
         git_repo = GitRepository(
             url=url,
             username=username,
@@ -154,7 +170,7 @@ def clone(repo):
     if not os.path.isdir(tmp_dir):
         os.mkdir(tmp_dir)
 
-    proc = subprocess.Popen(['git', 'clone', 'https://' + repo.url],
+    proc = subprocess.Popen(['git', 'clone', _make_git_protocol_url(repo.url)],
                             stdout=subprocess.PIPE,
                             cwd=tmp_dir)
 
