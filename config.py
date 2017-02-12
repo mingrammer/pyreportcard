@@ -2,6 +2,8 @@ from config_secret import SecretConfig
 
 
 class Config:
+    SECRET_KEY = SecretConfig.SECRET_KEY
+
     # MongoDB config
     MONGO_DBNAME = SecretConfig.MONGO_DBNAME
     MONGO_HOST = SecretConfig.MONGO_HOST
