@@ -9,4 +9,4 @@ app.config.from_object(Config)
 # Create mongodb client
 mongo = PyMongo(app)
 
-from .report.views import index, report
+from .report.views import about, check, index, report
