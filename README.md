@@ -3,9 +3,9 @@
 
 A report card for your Python application. This inspects a python project is hosted on Github and analyze the source code quality (PEP8 and Pyflakes), existence of license file, test coverage, and some statistics of codebase. Then shows its analysis results to user.
 
-It will be served as web service later.
+*Note: In current, it is not completed yet. This project is in progress. We are ready to implement following features*
 
-*Note: In current, it is not completed yet. This project is in progress. We'll implement following features ASAP*
+*Note: There is no analysis processing routines yet. So, it have an only main page, also can not see report page now yet. I'll add it ASAP*
 
 ## Install and Run
 
