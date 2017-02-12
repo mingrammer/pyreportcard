@@ -5,6 +5,7 @@ Supports 'git' protocol and 'Github' host now.
 """
 import datetime
 import os
+import re
 import shutil
 import subprocess
 
@@ -64,12 +65,18 @@ def get_latest_commit_hash(url):
     Raises:
         subprocess.CalledProcessError: An error occured getting hash from remote git repository
     """
-    proc = subprocess.Popen(['git', 'ls-remote', url],
+    proc = subprocess.Popen(['git', 'ls-remote', 'https://' + url],
                             stdout=subprocess.PIPE)
     output = subprocess.check_output(['grep', 'HEAD'], stdin=proc.stdout)
     output = subprocess.check_output(['cut', '-f', '1'], input=output)
     hash_string = output.strip().decode('utf-8')
     return hash_string
+
+
+def is_valid_github_repository(url):
+    if re.match(r'^github.com/\w+/\w+/?$', url):
+        return True
+    return False
 
 
 def parse_url_and_get_repo(url):
@@ -86,6 +93,9 @@ def parse_url_and_get_repo(url):
     Returns:
         A GitRepository instance has tokenized values if successful, None otherwise
     """
+    if not is_valid_github_repository(url):
+        return None
+
     try:
         commit_hash = get_latest_commit_hash(url)
         scheme_trimmed_url = url.split('://')[-1]

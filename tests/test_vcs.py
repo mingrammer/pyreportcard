@@ -5,6 +5,7 @@ import unittest
 from config import Config
 from helpers.db import get_repo_collection
 from vcs.repository import (GitRepository,
+                            is_valid_github_repository,
                             parse_url_and_get_repo,
                             cache,
                             is_cached,
@@ -15,7 +16,7 @@ from vcs.repository import (GitRepository,
 class RepositoryTest(unittest.TestCase):
     def setUp(self):
         self.repositories = get_repo_collection()
-        self.repo = parse_url_and_get_repo('https://github.com/mingrammer/sorting')
+        self.repo = parse_url_and_get_repo('github.com/mingrammer/sorting')
 
     def tearDown(self):
         self.repositories.delete_one({'url': self.repo.url})
@@ -26,15 +27,29 @@ class RepositoryTest(unittest.TestCase):
             else:
                 shutil.rmtree(Config.CLONE_TMP_DIR)
 
+    def test_is_valid_github_repository(self):
+        testcases = [
+            {
+                'url': 'github.com/mingrammer/sorting',
+                'expect': True
+            },
+            {
+                'url': 'github.com/django/',
+                'expect': False
+            }
+        ]
+        for tc in testcases:
+            self.assertEqual(is_valid_github_repository(tc['url']), tc['expect'])
+
     def test_parse_url_and_get_repo(self):
         testcases = [
             {
-                'url': 'https://github.com/mingrammer/sorting',
+                'url': 'github.com/mingrammer/sorting',
                 'name': 'sorting',
                 'username': 'mingrammer',
             },
             {
-                'url': 'git@github.com:django/django',
+                'url': 'github.com/django/django',
                 'name': 'django',
                 'username': 'django',
             }
@@ -63,7 +78,7 @@ class RepositoryTest(unittest.TestCase):
         self.assertEqual(cloned_path, os.path.join(Config.CLONE_TMP_DIR, self.repo.name))
 
     def test_clone_fail(self):
-        self.repo.url = 'https://github.com/mingrammer/null'
+        self.repo.url = 'github.com/mingrammer/null'
         with self.assertRaises(Exception):
             clone(self.repo.url)
 
