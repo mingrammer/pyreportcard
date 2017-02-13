@@ -56,7 +56,7 @@ class GitRepository(object):
 def parse_url(url):
     """Tokenize the url to get username and repository name
 
-     It parses the url and returns following properties
+    It parses the url and returns following properties
 
     - username
     - name (refers to repository name)
@@ -78,6 +78,14 @@ def parse_url(url):
 
 
 def _make_git_protocol_url(url):
+    """Make an URL with 'git@github.com' form
+
+    Args:
+        url: A repository URL
+
+    Returns:
+        Git protocol form URL
+    """
     username, name = parse_url(url)
     git_protocol_url = 'git@github.com:{0}/{1}'.format(username, name)
     return git_protocol_url
