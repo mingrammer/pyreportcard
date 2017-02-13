@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="results-container">
+  <div class="results">
+    <div class="results-summary">
+      <h3 class="title">Report for <a href="https://{{ report.url }}"><strong>{{ report.url }}</strong></a> by <a href="https://github.com/{{ report.username }}">{{ report.username }}</a></h3>
+      <p>Report HEAD Hash : <a href="https://{{ report.url }}/commit/{{ report.last_latest_hash }}">{{ report.last_latest_hash }}</a></p>
+      <h2 class="title black">Score : <strong>{{ report.analysis_results.report_grade }}</strong></h2>
+    </div>
+    <hr>
+    <div class="results-details">
+      {% include "report/stats.html" %}
+      {% include "report/lints.html" %}
+      {% include "report/files.html" %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

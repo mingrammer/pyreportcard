@@ -1,0 +1,65 @@
+<div class="details-section lints">
+  <h3 class="black">Lints</h3>
+  <hr>
+  <div class="col-md-3 section-menu">
+    <div class="list-group">
+      <a href="#" class="list-group-item disabled">
+        Lints
+      </a>
+      <a href="#lint-pep8" class="list-group-item">pep8 <span class="pull-right mint">{{ report.analysis_results.pep8_lint.score }}%</span></a>
+      <a href="#lint-pyflakes" class="list-group-item">pyflakes <span class="pull-right mint">{{ report.analysis_results.pyflakes_lint.score }}%</span></a>
+    </div>
+  </div>
+  <div class="col-md-9 section-content">
+    <div class="panel panel-default">           
+    <ul class="list-group">
+      <li id="lint-pep8" class="list-group-item">
+        <h3 class="black">
+          pep8
+          <span class="pull-right mint">{{ report.analysis_results.pep8_lint.score }}%</span>
+        </h3>
+        <p class="content-description">
+          pep8 is a tool to check your Python code against some of the style conventions in PEP8
+        </p>
+        {% if report.analysis_results.pep8_lint.error_list %}
+          {% for group in report.analysis_results.pep8_lint.error_list|groupby('location') %}
+            <a href="https://{{ report.url }}/blob/master/{{ group.grouper }}">{{ group.grouper }}</a>
+            <ul class="error-list">
+            {% for error in group.list %}
+              <li class="error-item">
+                <a href="https://{{ report.url }}/blob/master/{{ group.grouper }}#L{{ error.line }}">line {{ error.line }}</a> : {{ error.message }}
+              </li>
+            {% endfor %}
+            </ul>
+          {% endfor %}
+        {% else %}
+          There is no problem!
+        {% endif %}
+      </li>
+      <li id="lint-pyflakes" class="list-group-item">
+        <h3 class="black">
+          pyflakes
+          <span class="pull-right mint">{{ report.analysis_results.pyflakes_lint.score }}%</span>
+        </h3>
+        <p class="content-description">
+          pyflakes analyzes programs and detects various errors
+        </p>
+        {% if report.analysis_results.pyflakes_lint.error_list %}
+          {% for group in report.analysis_results.pyflakes_lint.error_list|groupby('location') %}
+            <a href="https://{{ report.url }}/blob/master/{{ group.grouper }}">{{ group.grouper }}</a>
+            <ul class="error-list">
+            {% for error in group.list %}
+              <li class="error-item">
+                <a href="https://{{ report.url }}/blob/master/{{ group.grouper }}#L{{ error.line }}">line {{ error.line }}</a> : {{ error.message }}
+              </li>
+            {% endfor %}
+            </ul>
+          {% endfor %}
+        {% else %}
+          There is no problem!
+        {% endif %}
+      </li>
+    </ul>
+    </div>
+  </div>
+</div>

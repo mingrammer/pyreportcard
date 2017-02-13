@@ -1,0 +1,47 @@
+<div class="details-section stats">
+  <h3 class="black">Stats</h3>
+  <hr>
+  <div class="col-md-3 section-menu">
+    <div class="list-group">
+      <a href="#" class="list-group-item disabled">
+        Stats
+      </a>
+      <a href="#count-file" class="list-group-item">file count <span class="pull-right mint">{{ report.analysis_results.count.file_count }}</span></a>
+      <a href="#count-line" class="list-group-item">sloc <span class="pull-right mint">{{ report.analysis_results.count.line_count }}</span></a>
+      <a href="#count-avg-line" class="list-group-item">average sloc <span class="pull-right mint">{{ report.analysis_results.count.avg_line_count }}</span></a>
+    </div>
+  </div>
+  <div class="col-md-9 section-content">
+    <div class="panel panel-default">           
+      <ul class="list-group">
+        <li id="count-file" class="list-group-item">
+          <h3 class="black">
+            file count
+            <span class="pull-right mint">{{ report.analysis_results.count.file_count }}</span>
+          </h3>
+          <p class="content-description">
+            Count of Python files in your project
+          </p>
+        </li>
+        <li id="count-line" class="list-group-item">
+          <h3 class="black">
+            sloc
+            <span class="pull-right mint">{{ report.analysis_results.count.line_count }}</span>
+          </h3>
+          <p class="content-description">
+            SLOC(Source Lines of Code) of all Python code
+          </p>
+        </li>
+        <li id="count-avg-line" class="list-group-item">
+          <h3 class="black">
+            average sloc
+            <span class="pull-right mint">{{ report.analysis_results.count.avg_line_count }}</span>
+          </h3>
+          <p class="content-description">
+            The average sloc
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

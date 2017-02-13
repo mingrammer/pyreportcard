@@ -1,0 +1,32 @@
+<div class="details-section files">
+  <h3 class="black">Files</h3>
+  <hr>
+  <div class="col-md-3 section-menu">
+    <div class="list-group">
+      <a href="#" class="list-group-item disabled">
+        Files
+      </a>
+      <a href="#file-license" class="list-group-item">license <span class="pull-right mint">{% if report.analysis_results.license.has_license %}100%{% else %}0%{% endif %}</span></a>
+    </div>
+  </div>
+  <div class="col-md-9 section-content">
+    <div class="panel panel-default">
+      <ul class="list-group">
+        <li id="#file-license" class="list-group-item">
+          <h3 class="black">
+            license
+            <span class="pull-right mint">{% if report.analysis_results.license.has_license %}100%{% else %}0%{% endif %}</span>
+          </h3>
+          <p class="content-description">
+            Checks whether your project has a LICENSE file
+          </p>
+          {% if report.analysis_results.license.has_license %}
+            <p>There is no problem!</p>
+          {% else %}
+            <p class="blue">License file is missing</p>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
