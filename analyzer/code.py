@@ -47,7 +47,7 @@ class LintAnalyzer(Grade):
             A tuple of location, line, message of LintError
         """
         tokenized_by_colon = line.split(':')
-        location = tokenized_by_colon[0]
+        location = tokenized_by_colon[0].split('/')[-1]
         line = tokenized_by_colon[1]
         # In PEP8 case, tokenized_by_colon[2] refers to column number of a line
         message = tokenized_by_colon[-1]
@@ -83,9 +83,9 @@ class PEP8LintAnalyzer(LintAnalyzer):
         
         path: Cloned repository path
         """
-        all_python_files = glob(os.path.join(path,  "*.py")) + glob(os.path.join(path,  "**/*.py"))
-        proc = subprocess.Popen(['pep8'] + all_python_files,
-                                  stdout=subprocess.PIPE)
+        proc = subprocess.Popen(['pep8', '.'],
+                                  stdout=subprocess.PIPE,
+                                  cwd=path)
         output, _ = proc.communicate()
         self._save_lint_results(output)
 
@@ -108,9 +108,9 @@ class PyflakesLintAnalyzer(LintAnalyzer):
         
         path: Cloned repository path
         """
-        all_python_files = glob(os.path.join(path,  "*.py")) + glob(os.path.join(path,  "**/*.py"))
-        proc = subprocess.Popen(['pyflakes'] + all_python_files,
-                                  stdout=subprocess.PIPE)
+        proc = subprocess.Popen(['pyflakes', '.'],
+                                  stdout=subprocess.PIPE,
+                                  cwd=path)
         output, _ = proc.communicate()
         self._save_lint_results(output)
     
