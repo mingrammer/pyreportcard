@@ -37,7 +37,7 @@ You can see our planning for future versions in [here](https://github.com/mingra
 class SecretConfig:
     SECRET_KEY = '...'
 
-    MONGO_DBNAME = '...'
+    MONGO_DBNAME = 'reportcard'
     MONGO_HOST = '...'
     MONGO_PORT = ...
     # MONGO_USER = '...'
