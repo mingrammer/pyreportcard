@@ -5,8 +5,7 @@ from glob import glob
 import os
 import subprocess
 
-from report import Grade
-
+from .report import Grade
 
 class LintError(object):
     """A struct for lint error message
