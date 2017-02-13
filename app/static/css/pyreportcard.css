@@ -8,12 +8,36 @@ body {
     font-family: "Helvetica";
 }
 
+ul, li {
+    list-style-type: square;
+}
+
+a {
+    color: #3498db;
+}
+
+span {
+    vertical-align: middle;
+}
+
 .centered-text {
     text-align: center;
 }
 
+.black {
+    color: #000000;
+}
+
 .grey {
     color: #69707a;
+}
+
+.mint {
+    color: #1abc9c;
+}
+
+.blue {
+    color: #3498db;
 }
 
 .navbar {
@@ -61,8 +85,39 @@ body {
     font-size: 16px;
 }
 
-.results .container {
-    margin: 0 50px;
+.results-container {
+    padding-top: 40px;
+}
+
+.results {
+    margin: 0 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.results-summary .title {
+    font-weight: 300;
+}
+
+.results-details {
+    margin: 20px 0;
+    overflow: auto;
+}
+
+.results-details .details-section {
+    overflow: auto;
+}
+
+.results-details .section-menu {
+    padding-left: 0;
+}
+
+.results-details .section-content {
+    padding-right: 0;
+}
+
+.results-details .section-content .content-description {
+    font-weight: 300;
 }
 
 .about {
