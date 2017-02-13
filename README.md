@@ -5,11 +5,11 @@ A report card for your Python application. This inspects a python project is hos
 
 You can see our planning for future versions in [here](https://github.com/mingrammer/pyreportcard/projects/1) too.
 
-*Note: There is no analysis processing routines yet. So, it have an only main page, also can not see report page now yet. I'll add it ASAP*
-
-## Screen Shot
+## ScreenShots
 
 ![main](screenshots/main.png)
+
+![report](screenshots/report.png)
 
 ## Features
 
@@ -20,8 +20,8 @@ You can see our planning for future versions in [here](https://github.com/mingra
 * [ ] Supports checking the compatibility of Python 2 and 3
 * [ ] Supports checking the security issues
 * [ ] Supports customizable analyzing using own configuration file
-* [X] Provides a grade system
-* [X] Provides a pyreportcard web server
+* [x] Provides a grade system
+* [x] Provides a pyreportcard web server
 * [ ] Serves it as web service
 * [ ] Provides ranking system
 * [ ] Provides badge link of repository grade
