@@ -7,6 +7,7 @@ import subprocess
 
 from .report import Grade
 
+
 class LintError(object):
     """A struct for lint error message
 
