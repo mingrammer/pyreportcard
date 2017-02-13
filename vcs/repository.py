@@ -141,8 +141,7 @@ def cache(repo):
         repo: A repository instance
     """
     repositories = get_repo_collection()
-    repo_doc = repo.to_document()
-    repositories.insert_one(repo_doc)
+    repositories.update({'url': repo.url}, repo.to_document(), upsert=True)
 
 
 def is_cached(repo):
