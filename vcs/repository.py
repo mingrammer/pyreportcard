@@ -156,7 +156,7 @@ def is_cached(repo):
         Whether if there is cached one or not
     """
     repositories = get_repo_collection()
-    repo_doc = repositories.find_one({'name': repo.name, 'username': repo.username})
+    repo_doc = repositories.find_one({'url': repo.url})
 
     if not repo_doc:
         return False
