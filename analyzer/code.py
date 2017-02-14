@@ -46,13 +46,8 @@ class LintAnalyzer(Grade):
         Returns:
             A tuple of location, line, message of LintError
         """
-        tokenized_by_colon = line.split(':')
-        location = '/'.join(tokenized_by_colon[0].split('/')[1:])
-        line = tokenized_by_colon[1]
-        # In PEP8 case, tokenized_by_colon[2] refers to column number of a line
-        message = tokenized_by_colon[-1]
-        return location, line, message
-    
+        raise NotImplementedError
+
     def _save_lint_results(self, output):
         """Save the linting results
         
@@ -77,6 +72,13 @@ class PEP8LintAnalyzer(LintAnalyzer):
     def __init__(self):
         super().__init__()
         self.weight = 0.5
+
+    def _parse_lint_message(self, line):
+        tokenized_by_colon = line.split(':')
+        location = '/'.join(tokenized_by_colon[0].split('/')[1:])
+        line = tokenized_by_colon[1]
+        message = tokenized_by_colon[3:]
+        return location, line, ''.join(message)
 
     def run(self, path):
         """Run pep8 command for all python source files
@@ -103,6 +105,13 @@ class PyflakesLintAnalyzer(LintAnalyzer):
         super().__init__()
         self.weight = 0.5
 
+    def _parse_lint_message(self, line):
+        tokenized_by_colon = line.split(':')
+        location = '/'.join(tokenized_by_colon[0].split('/')[1:])
+        line = tokenized_by_colon[1]
+        message = tokenized_by_colon[2:]
+        return location, line, ''.join(message)
+
     def run(self, path):
         """Run pyflakes command for all python source files
         
@@ -113,7 +122,7 @@ class PyflakesLintAnalyzer(LintAnalyzer):
                                   cwd=path)
         output, _ = proc.communicate()
         self._save_lint_results(output)
-    
+
     def to_document(self):
         document = {'pyflakes_lint': {'error_list': [], 'score': 0}}
         for lint_error in self.lint_error_list:
