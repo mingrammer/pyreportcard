@@ -66,9 +66,9 @@ def report(repo_url):
             'report_grade': calculate_report_grade(pep8_analyzer,
                                                 pyflakes_analyzer)
         })
-        repo.update_last_latest_hash()
-        results = repo.to_document()
 
         cache(repo)
         clear(path)
+
+        results = repo.to_document()
     return render_template('report/results.html', report=results)

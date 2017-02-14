@@ -141,6 +141,7 @@ def cache(repo):
         repo: A repository instance
     """
     repositories = get_repo_collection()
+    repo.update_last_latest_hash()
     repositories.update({'url': repo.url}, repo.to_document(), upsert=True)
 
 
