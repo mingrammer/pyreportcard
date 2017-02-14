@@ -8,6 +8,10 @@ body {
     font-family: "Helvetica";
 }
 
+h3 {
+    margin-top: 10px;
+}
+
 ul, li {
     list-style-type: square;
 }
