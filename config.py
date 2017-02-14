@@ -11,4 +11,4 @@ class Config:
 
     # Cloning config
     CLONE_TMP_DIR = 'tmp'
-    CLONE_TIMEOUT = 15
+    CLONE_TIMEOUT = 30
