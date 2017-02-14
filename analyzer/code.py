@@ -139,9 +139,9 @@ class CountAnalyzer(object):
         
         path: Cloned repository path
         """
-        all_python_files = glob(os.path.join(path,  "*.py")) + glob(os.path.join(path,  "**/*.py"))
-        proc = subprocess.Popen(['ls'] + all_python_files,
-                                stdout=subprocess.PIPE)
+        proc = subprocess.Popen(['find', '.', '-name', '*.py'],
+                                stdout=subprocess.PIPE,
+                                cwd=path)
         output = subprocess.check_output(['wc', '-l'], stdin=proc.stdout)
         file_count = int(output.decode().split()[0])
         return file_count
@@ -151,9 +151,9 @@ class CountAnalyzer(object):
         
         path: Cloned repository path
         """
-        all_python_files = glob(os.path.join(path,  "*.py")) + glob(os.path.join(path,  "**/*.py"))
-        proc = subprocess.Popen(['cat'] + all_python_files,
-                                stdout=subprocess.PIPE)
+        proc = subprocess.Popen(['find', '.', '-name', '*.py', '-exec', 'cat', '{}', '+'],
+                                stdout=subprocess.PIPE,
+                                cwd=path)
         output = subprocess.check_output(['wc', '-l'], stdin=proc.stdout)
         line_count = int(output.decode().split()[0])
         return line_count
