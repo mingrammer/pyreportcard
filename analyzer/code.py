@@ -47,7 +47,7 @@ class LintAnalyzer(Grade):
             A tuple of location, line, message of LintError
         """
         tokenized_by_colon = line.split(':')
-        location = tokenized_by_colon[0].split('/')[-1]
+        location = '/'.join(tokenized_by_colon[0].split('/')[1:])
         line = tokenized_by_colon[1]
         # In PEP8 case, tokenized_by_colon[2] refers to column number of a line
         message = tokenized_by_colon[-1]
