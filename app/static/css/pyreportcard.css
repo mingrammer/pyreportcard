@@ -86,13 +86,18 @@ span {
 }
 
 .results-container {
-    padding-top: 40px;
+    padding-top: 50px;
 }
 
 .results {
-    margin: 0 100px;
+    max-width: 960px;
+    margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.results-summary {
+    padding: 0 15px;
 }
 
 .results-summary .title {
@@ -106,14 +111,6 @@ span {
 
 .results-details .details-section {
     overflow: auto;
-}
-
-.results-details .section-menu {
-    padding-left: 0;
-}
-
-.results-details .section-content {
-    padding-right: 0;
 }
 
 .results-details .section-content .content-description {
