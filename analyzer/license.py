@@ -7,7 +7,7 @@ class LicenseAnalyzer(object):
     has_license: Whether if license file exists or not
     """
 
-    LICENSE_PATTERN = ('license', 'license.md', 'license.rst')
+    LICENSE_PATTERN = ('license', 'license.md', 'license.rst', 'license.txt')
 
     def __init__(self):
         self.has_license = False
