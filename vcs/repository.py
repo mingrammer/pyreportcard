@@ -70,7 +70,7 @@ def parse_url(url):
     Raises:
         ValueError: An error occured parsing invalid github repository URL
     """
-    check_valid_github_repository = re.match(r'^github.com/\w+/\w+/?$', url)
+    check_valid_github_repository = re.match(r'^github.com/[\w-]+/[\w-]+/?$', url)
     if check_valid_github_repository is None:
         raise ValueError('The given repository URL is not valid')
     username, name = url.split('/')[-2:]
