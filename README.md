@@ -5,6 +5,8 @@ A report card for your Python application. This inspects a python project is hos
 
 You can see our planning for future versions in [here](https://github.com/mingrammer/pyreportcard/projects/1) too.
 
+*Note: I'm preparing the supports of isolated running environments with Docker. I'll add it soon*
+
 ## ScreenShots
 
 ![main](screenshots/main.png)
