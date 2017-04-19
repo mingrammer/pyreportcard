@@ -87,7 +87,7 @@ def _make_git_protocol_url(url):
         Git protocol form URL
     """
     username, name = parse_url(url)
-    git_protocol_url = 'git@github.com:{0}/{1}'.format(username, name)
+    git_protocol_url = 'git://github.com/{0}/{1}.git'.format(username, name)
     return git_protocol_url
 
 
