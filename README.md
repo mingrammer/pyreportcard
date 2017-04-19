@@ -1,9 +1,11 @@
 # Python Report Card
 > *Inspired by [Go Report Card](https://github.com/gojp/goreportcard)*
 
-A report card for your Python application. This inspects a python project is hosted on Github and analyze the source code quality (pep8, pyflakes, bandit etc), existence of license file and some useful statistics of whole codebase. Then shows its analysis results on web.
+A report card for your Python application. This inspects a python project is hosted on Github and analyze the source code quality (pep8, pyflakes and bandit etc.), existence of license file, and some useful statistics of whole codebase. Then shows its analysis results on web.
 
 You can see our planning for future versions in [here](https://github.com/mingrammer/pyreportcard/projects/1) too.
+
+*Note: I'm preparing the supports of isolated running environments with Docker. I'll add it soon*
 
 ## ScreenShots
 
@@ -16,11 +18,11 @@ You can see our planning for future versions in [here](https://github.com/mingra
 * [x] Supports checking the code quality using PEP8 and Pyflakes linting tools
 * [x] Supports counting the code lines and calculates some stats
 * [x] Supports checking the license file
+* [x] Provides a grade system
+* [x] Provides a pyreportcard web server
 * [ ] Supports checking the compatibility of Python 2 and 3
 * [ ] Supports checking the security issues
 * [ ] Supports customizable analyzing using own configuration file
-* [x] Provides a grade system
-* [x] Provides a pyreportcard web server
 * [ ] Serves it as web service
 * [ ] Provides ranking system
 * [ ] Provides badge link of repository grade
@@ -61,6 +63,7 @@ python3 -m unittest tests/test_vcs.py`
 * [Pyflakes](https://github.com/PyCQA/pyflakes)
 * [Pymongo](https://github.com/mongodb/mongo-python-driver)
 * [Flask](https://github.com/pallets/flask)
+* [MongoDB](https://github.com/mongodb/mongo)
 
 ## License
 The content of this project itself is licensed under the Creative Commons Attribution 3.0 license, and the underlying source code used to format and display that content is licensed under the MIT license.
