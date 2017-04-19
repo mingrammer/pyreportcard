@@ -36,7 +36,7 @@ You can see our planning for future versions in [here](https://github.com/mingra
 * Install the [MongoDB](https://www.mongodb.com/) that is used for our backend database.
 * You must configure the secret values in `config_secret.py`. Firstly, copy the example secret file to create secret file by `cp config_secret.py.example config_secret.py`, and then fill out the secret values with yours.
 
-```
+```python
 class SecretConfig:
     SECRET_KEY = '...'
 
@@ -57,7 +57,7 @@ class SecretConfig:
 *Note: We have a test code for only vcs module now. We'll add more tests for all features soon*
 
 ```bash
-python3 -m unittest tests/test_vcs.py`
+python3 -m unittest discover tests`
 ```
 
 ## Dependencies
