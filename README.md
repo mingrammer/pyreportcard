@@ -57,7 +57,7 @@ class SecretConfig:
 *Note: We have a test code for only vcs module now. We'll add more tests for all features soon*
 
 ```bash
-python3 -m unittest discover tests`
+python3 -m unittest discover tests
 ```
 
 ## Dependencies
