@@ -1,4 +1,4 @@
-![travis](https://travis-ci.org/mingrammer/pyreportcard.svg?branch=master)
+[![Build Status](https://travis-ci.org/mingrammer/pyreportcard.svg?branch=master)](https://travis-ci.org/mingrammer/pyreportcard)
 
 # Python Report Card
 > *Inspired by [Go Report Card](https://github.com/gojp/goreportcard)*
