@@ -16,7 +16,7 @@ from vcs.repository import (GitRepository,
 class RepositoryTest(unittest.TestCase):
     def setUp(self):
         self.repositories = get_repo_collection()
-        self.repo = create_repository('github.com/mingrammer/sorting')
+        self.repo = create_repository('github.com/mingrammer/awesome-finder')
 
     def tearDown(self):
         self.repositories.delete_one({'url': self.repo.url})
@@ -30,8 +30,8 @@ class RepositoryTest(unittest.TestCase):
     def test_parse_url(self):
         testcases = [
             {
-                'url': 'github.com/mingrammer/sorting',
-                'name': 'sorting',
+                'url': 'github.com/mingrammer/awesome-finder',
+                'name': 'awesome-finder',
                 'username': 'mingrammer'
             },
             {
@@ -47,7 +47,7 @@ class RepositoryTest(unittest.TestCase):
 
     def test_parse_url_fail(self):
         testcases = [
-            'github.com/mingrammer/sorting/useless',
+            'github.com/mingrammer/awesome-finder/useless',
             'github.com/django/'
         ]
         for tc in testcases:
@@ -57,8 +57,8 @@ class RepositoryTest(unittest.TestCase):
     def test_create_repository(self):
         testcases = [
             {
-                'url': 'github.com/mingrammer/sorting',
-                'name': 'sorting',
+                'url': 'github.com/mingrammer/awesome-finder',
+                'name': 'awesome-finder',
                 'username': 'mingrammer',
             },
             {
