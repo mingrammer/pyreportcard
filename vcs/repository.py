@@ -103,12 +103,12 @@ def _get_latest_commit_hash(url):
     Raises:
         subprocess.CalledProcessError: An error occured getting hash from remote git repository
     """
-    proc = subprocess.Popen(['git', 'ls-remote', _make_git_protocol_url(url)],
-                            stdout=subprocess.PIPE)
-    output = subprocess.check_output(['grep', 'HEAD'], stdin=proc.stdout)
-    output = subprocess.check_output(['cut', '-f', '1'], input=output)
-    hash_string = output.strip().decode('utf-8')
-    return hash_string
+    with subprocess.Popen(['git', 'ls-remote', _make_git_protocol_url(url)],
+                          stdout=subprocess.PIPE) as proc:
+        output = subprocess.check_output(['grep', 'HEAD'], stdin=proc.stdout)
+        output = subprocess.check_output(['cut', '-f', '1'], input=output)
+        hash_string = output.strip().decode('utf-8')
+        return hash_string
 
 
 def create_repository(url):
@@ -142,7 +142,7 @@ def cache(repo):
     """
     repositories = get_repo_collection()
     repo.update_last_latest_hash()
-    repositories.update({'url': repo.url}, repo.to_document(), upsert=True)
+    repositories.replace_one({'url': repo.url}, repo.to_document(), upsert=True)
 
 
 def is_cached(repo):
