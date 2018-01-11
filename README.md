@@ -1,7 +1,21 @@
-[![Build Status](https://travis-ci.org/mingrammer/pyreportcard.svg?branch=master)](https://travis-ci.org/mingrammer/pyreportcard)
+<br><br>
 
-# Python Report Card
-> *Inspired by [Go Report Card](https://github.com/gojp/goreportcard)*
+<h1 align="center">Python Report Card</h1>
+
+<p align="center">
+  <a href="/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg"/></a>
+  <a href="https://docs.python.org/3/index.html"><img src="https://img.shields.io/badge/python-3.6-blue.svg"/></a>
+  <a href="https://www.python.org/dev/peps/pep-0008"><img src="https://img.shields.io/badge/code%20style-PEP8-brightgreen.svg"/></a>
+  <a href="https://travis-ci.org/mingrammer/pyreportcard"><img src="https://travis-ci.org/mingrammer/pyreportcard.svg?branch=master"/></a>
+</p>
+
+<p align="center">
+  Analyze and report the python projects which are on Github
+</p>
+
+<br><br><br>
+
+> Inspired by [Go Report Card](https://github.com/gojp/goreportcard)
 
 A report card for your Python application. This inspects a python project is hosted on Github and analyze the source code quality (pep8, pyflakes and bandit etc.), existence of license file, and some useful statistics of whole codebase. Then shows its analysis results on web.
 
