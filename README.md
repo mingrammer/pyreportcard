@@ -23,9 +23,13 @@ You can see our planning for future versions in [here](https://github.com/mingra
 
 *Note: I'm preparing the supports of isolated running environments with Docker. I'll add it soon*
 
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmingrammer%2Fpyreportcard.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmingrammer%2Fpyreportcard?ref=badge_large)
+
 ## ScreenShots
 
 ![main](screenshots/main.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmingrammer%2Fpyreportcard.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmingrammer%2Fpyreportcard?ref=badge_shield)
 
 ![report](screenshots/report.png)
 
