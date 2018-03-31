@@ -111,6 +111,12 @@ def _get_latest_commit_hash(url):
         return hash_string
 
 
+def _create_writable_directory(dir_name):
+    umask = os.umask(0o000)
+    os.mkdir(dir_name, 0o766)
+    os.umask(umask)
+
+
 def create_repository(url):
     """Create a repository instance for given repository url
 
@@ -176,7 +182,7 @@ def clone(repo):
     """
     tmp_dir = Config.CLONE_TMP_DIR
     if not os.path.isdir(tmp_dir):
-        os.mkdir(tmp_dir, 0o0766)
+        _create_writable_directory(tmp_dir)
 
     if os.path.exists(os.path.join(tmp_dir, repo.name)):
         shutil.rmtree(os.path.join(tmp_dir, repo.name))
