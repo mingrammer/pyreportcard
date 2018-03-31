@@ -166,6 +166,7 @@ def is_cached(repo):
 
 def clone(repo):
     """Clone the repository on temporary place and return location
+    Clone is done only if there is no cache, so if there already exists clone directory, it should be removed.
 
     Args:
         repo: A repository instance
@@ -175,7 +176,10 @@ def clone(repo):
     """
     tmp_dir = Config.CLONE_TMP_DIR
     if not os.path.isdir(tmp_dir):
-        os.mkdir(tmp_dir)
+        os.mkdir(tmp_dir, mode=766)
+
+    if os.path.exists(os.path.join(tmp_dir, repo.name)):
+        os.remove(os.path.join(tmp_dir, repo.name))
 
     proc = subprocess.Popen(['git', 'clone', '--depth=1', _make_git_protocol_url(repo.url)],
                             stdout=subprocess.PIPE,
