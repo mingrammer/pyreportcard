@@ -176,7 +176,7 @@ def clone(repo):
     """
     tmp_dir = Config.CLONE_TMP_DIR
     if not os.path.isdir(tmp_dir):
-        os.mkdir(tmp_dir, mode=766)
+        os.mkdir(tmp_dir, 0o0766)
 
     if os.path.exists(os.path.join(tmp_dir, repo.name)):
         os.remove(os.path.join(tmp_dir, repo.name))

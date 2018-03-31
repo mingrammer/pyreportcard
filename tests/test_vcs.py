@@ -96,7 +96,7 @@ class RepositoryTest(unittest.TestCase):
             clone(self.repo.url)
 
     def test_clear(self):
-        os.mkdir(Config.CLONE_TMP_DIR)
+        os.mkdir(Config.CLONE_TMP_DIR, 0o0766)
         os.mkdir(os.path.join(Config.CLONE_TMP_DIR, Config.CLONE_TMP_DIR))
         clear(Config.CLONE_TMP_DIR)
         self.assertEqual(os.path.isdir(Config.CLONE_TMP_DIR), False)
