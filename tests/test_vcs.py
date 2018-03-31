@@ -4,13 +4,7 @@ import unittest
 
 from config import Config
 from db.collection import get_repo_collection
-from vcs.repository import (GitRepository,
-                            parse_url,
-                            create_repository,
-                            cache,
-                            is_cached,
-                            clone,
-                            clear)
+from vcs.repository import cache, clear, clone, create_repository, is_cached, parse_url
 
 
 class RepositoryTest(unittest.TestCase):

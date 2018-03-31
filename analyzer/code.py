@@ -1,8 +1,6 @@
 """
 A source code linting analyzer for checking PEP8 and Pyflakes warnings
 """
-from glob import glob
-import os
 import subprocess
 
 from .report import Grade
@@ -15,6 +13,7 @@ class LintError(object):
     line:     The number of line where the error or warning occurred
     message:  Lint error or warning message
     """
+
     def __init__(self, location, line, message):
         self.location = location
         self.line = line
@@ -34,6 +33,7 @@ class LintAnalyzer(Grade):
     
     lint_error_list: LintError list for linting
     """
+
     def __init__(self):
         self.lint_error_list = []
 
@@ -69,6 +69,7 @@ class LintAnalyzer(Grade):
 
 class PEP8LintAnalyzer(LintAnalyzer):
     """An analyzer for PEP8 linting"""
+
     def __init__(self):
         super().__init__()
         self.weight = 0.5
@@ -86,8 +87,8 @@ class PEP8LintAnalyzer(LintAnalyzer):
         path: Cloned repository path
         """
         proc = subprocess.Popen(['pep8', '.'],
-                                  stdout=subprocess.PIPE,
-                                  cwd=path)
+                                stdout=subprocess.PIPE,
+                                cwd=path)
         output, _ = proc.communicate()
         self._save_lint_results(output)
 
@@ -101,6 +102,7 @@ class PEP8LintAnalyzer(LintAnalyzer):
 
 class PyflakesLintAnalyzer(LintAnalyzer):
     """An analyzer for Pyflakes linting"""
+
     def __init__(self):
         super().__init__()
         self.weight = 0.5
@@ -118,8 +120,8 @@ class PyflakesLintAnalyzer(LintAnalyzer):
         path: Cloned repository path
         """
         proc = subprocess.Popen(['pyflakes', '.'],
-                                  stdout=subprocess.PIPE,
-                                  cwd=path)
+                                stdout=subprocess.PIPE,
+                                cwd=path)
         output, _ = proc.communicate()
         self._save_lint_results(output)
 
@@ -138,6 +140,7 @@ class CountAnalyzer(object):
     total_line_count:   The number of lines of all python files
     average_line_count: The average number of lines of all python files 
     """
+
     def __init__(self):
         self.file_count = 0
         self.total_line_count = 0

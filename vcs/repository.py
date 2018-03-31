@@ -9,8 +9,8 @@ import re
 import shutil
 import subprocess
 
-from config import Config
 import constants
+from config import Config
 from db.collection import get_repo_collection
 
 

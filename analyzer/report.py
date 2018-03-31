@@ -1,6 +1,8 @@
 """
 A collection of classes or functions for reporting
 """
+
+
 class Grade(object):
     """Common grade struct for measurable features
 
@@ -13,6 +15,7 @@ class Grade(object):
     def get_weighted_score(self):
         """Returns real score correspoding to weight value"""
         return self.score * self.weight
+
 
 def calculate_report_grade(*results):
     """Calculate a total grade by summing the analyzed results
@@ -44,4 +47,3 @@ def calculate_report_grade(*results):
         return 'E'
     else:
         return 'F'
-

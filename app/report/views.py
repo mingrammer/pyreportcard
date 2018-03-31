@@ -1,15 +1,10 @@
-from flask import flash, g, redirect, render_template, request, url_for
+from flask import flash, redirect, render_template, request, url_for
 
-from app import app, mongo
 from analyzer.code import CountAnalyzer, PEP8LintAnalyzer, PyflakesLintAnalyzer
 from analyzer.license import LicenseAnalyzer
 from analyzer.report import calculate_report_grade
-from vcs.repository import (cache,
-                            clear,
-                            clone,
-                            create_repository,
-                            is_cached,
-                            parse_url)
+from app import app, mongo
+from vcs.repository import cache, clear, clone, create_repository, is_cached, parse_url
 
 
 @app.route('/')
@@ -64,7 +59,7 @@ def report(repo_url):
             **pyflakes_analyzer.to_document(),
             **license_analyzer.to_document(),
             'report_grade': calculate_report_grade(pep8_analyzer,
-                                                pyflakes_analyzer)
+                                                   pyflakes_analyzer)
         })
 
         cache(repo)
