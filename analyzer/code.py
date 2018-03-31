@@ -3,7 +3,7 @@ A source code linting analyzer for checking PEP8 and Pyflakes warnings
 """
 import subprocess
 
-from .report import Grade
+from analyzer.report import Grade
 
 
 class LintError(object):
