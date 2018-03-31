@@ -10,3 +10,6 @@ config_secret.py
 
 # VScode
 tags
+
+# Trash
+.DS_Store
