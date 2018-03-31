@@ -3,7 +3,7 @@ import shutil
 import unittest
 
 from config import Config
-from helpers.db import get_repo_collection
+from db.collection import get_repo_collection
 from vcs.repository import (GitRepository,
                             parse_url,
                             create_repository,

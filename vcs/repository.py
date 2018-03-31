@@ -11,7 +11,7 @@ import subprocess
 
 from config import Config
 import constants
-from helpers.db import get_repo_collection
+from db.collection import get_repo_collection
 
 
 class GitRepository(object):
