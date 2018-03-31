@@ -179,7 +179,7 @@ def clone(repo):
         os.mkdir(tmp_dir, 0o0766)
 
     if os.path.exists(os.path.join(tmp_dir, repo.name)):
-        os.remove(os.path.join(tmp_dir, repo.name))
+        shutil.rmtree(os.path.join(tmp_dir, repo.name))
 
     proc = subprocess.Popen(['git', 'clone', '--depth=1', _make_git_protocol_url(repo.url)],
                             stdout=subprocess.PIPE,
