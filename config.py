@@ -12,7 +12,7 @@ class Config:
         MONGO_DBNAME = 'reportcard'
         MONGO_HOST = 'localhost'
         MONGO_PORT = 27017
-            
+
     # Cloning config
     CLONE_TMP_DIR = 'tmp'
     CLONE_TIMEOUT = 30

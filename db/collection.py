@@ -1,8 +1,9 @@
 """
 A simple mongodb helper
 """
-from config import Config
 from pymongo import MongoClient
+
+from config import Config
 
 
 def get_repo_collection():
