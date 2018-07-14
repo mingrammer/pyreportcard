@@ -2,13 +2,14 @@
 __pycache__/
 *.pyc
 
-# Virtualenv
-.env
+# Environment
+.envrc
 
 # Secret information
 config_secret.py
 
-# VScode
+# IDE files
+.idea/
 tags
 
 # Trash
