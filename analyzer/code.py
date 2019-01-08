@@ -33,6 +33,8 @@ class LintAnalyzer(Grade):
     
     lint_error_list: LintError list for linting
     """
+    document_name = ''
+    message_column = 2
 
     def __init__(self):
         self.lint_error_list = []
@@ -46,7 +48,11 @@ class LintAnalyzer(Grade):
         Returns:
             A tuple of location, line, message of LintError
         """
-        raise NotImplementedError
+        tokenized_by_colon = line.split(':')
+        location = '/'.join(tokenized_by_colon[0].split('/')[1:])
+        line = tokenized_by_colon[1]
+        message = tokenized_by_colon[self.message_column:]
+        return location, line, ''.join(message)
 
     def _save_lint_results(self, output):
         """Save the linting results
@@ -64,22 +70,18 @@ class LintAnalyzer(Grade):
 
     def to_document(self):
         """Make document dict of instance to store to db"""
-        raise NotImplementedError('Must implement this method')
+        error_list = [err.to_document() for err in self.lint_error_list]
+        document = {
+            self.document_name: {'error_list': error_list, 'score': self.score}
+        }
+        return document
 
 
 class PEP8LintAnalyzer(LintAnalyzer):
     """An analyzer for PEP8 linting"""
-
-    def __init__(self):
-        super().__init__()
-        self.weight = 0.5
-
-    def _parse_lint_message(self, line):
-        tokenized_by_colon = line.split(':')
-        location = '/'.join(tokenized_by_colon[0].split('/')[1:])
-        line = tokenized_by_colon[1]
-        message = tokenized_by_colon[3:]
-        return location, line, ''.join(message)
+    document_name = 'pep8_lint'
+    weight = 0.5
+    message_column = 3
 
     def run(self, path):
         """Run pep8 command for all python source files
@@ -92,27 +94,11 @@ class PEP8LintAnalyzer(LintAnalyzer):
         output, _ = proc.communicate()
         self._save_lint_results(output)
 
-    def to_document(self):
-        document = {'pep8_lint': {'error_list': [], 'score': 0}}
-        for lint_error in self.lint_error_list:
-            document['pep8_lint']['error_list'].append(lint_error.to_document())
-        document['pep8_lint']['score'] = self.score
-        return document
-
 
 class PyflakesLintAnalyzer(LintAnalyzer):
     """An analyzer for Pyflakes linting"""
-
-    def __init__(self):
-        super().__init__()
-        self.weight = 0.5
-
-    def _parse_lint_message(self, line):
-        tokenized_by_colon = line.split(':')
-        location = '/'.join(tokenized_by_colon[0].split('/')[1:])
-        line = tokenized_by_colon[1]
-        message = tokenized_by_colon[2:]
-        return location, line, ''.join(message)
+    document_name = 'pyflakes_lint'
+    weight = 0.5
 
     def run(self, path):
         """Run pyflakes command for all python source files
@@ -125,12 +111,22 @@ class PyflakesLintAnalyzer(LintAnalyzer):
         output, _ = proc.communicate()
         self._save_lint_results(output)
 
-    def to_document(self):
-        document = {'pyflakes_lint': {'error_list': [], 'score': 0}}
-        for lint_error in self.lint_error_list:
-            document['pyflakes_lint']['error_list'].append(lint_error.to_document())
-        document['pyflakes_lint']['score'] = self.score
-        return document
+
+class MyPyAnalyser(LintAnalyzer):
+    """An analyzer for MyPy linting"""
+    document_name = 'mypy_lint'
+    weight = 0.5
+
+    def run(self, path):
+        """Run mypy command for all python source files
+
+        path: Cloned repository path
+        """
+        proc = subprocess.Popen(['mypy', '--ignore-missing-imports', '--allow-untyped-globals', '*.py', '**/*.py'],
+                                stdout=subprocess.PIPE,
+                                cwd=path)
+        output, _ = proc.communicate()
+        self._save_lint_results(output)
 
 
 class CountAnalyzer(object):
