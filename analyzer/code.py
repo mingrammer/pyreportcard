@@ -122,7 +122,7 @@ class MyPyAnalyser(LintAnalyzer):
 
         path: Cloned repository path
         """
-        proc = subprocess.Popen(['mypy', '--ignore-missing-imports', '--allow-untyped-globals', '*.py', '**/*.py'],
+        proc = subprocess.Popen(['mypy', '--ignore-missing-imports', '--allow-untyped-globals', '.'],
                                 stdout=subprocess.PIPE,
                                 cwd=path)
         output, _ = proc.communicate()
