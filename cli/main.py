@@ -3,7 +3,7 @@
 from argparse import ArgumentParser
 
 from analyzer import analyze
-from command_line.formatting import format_results
+from cli.formatting import format_results
 
 if __name__ == "__main__":
     parser = ArgumentParser(
