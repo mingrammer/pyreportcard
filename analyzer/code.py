@@ -1,6 +1,7 @@
 """
 A source code linting analyzer for checking PEP8 and Pyflakes warnings
 """
+import os
 import subprocess
 
 from analyzer.report import Grade
@@ -49,7 +50,9 @@ class LintAnalyzer(Grade):
             A tuple of location, line, message of LintError
         """
         tokenized_by_colon = line.split(':')
-        location = '/'.join(tokenized_by_colon[0].split('/')[1:])
+        location = tokenized_by_colon[0]
+        if location.startswith("./"):
+            location = location[2:]
         line = tokenized_by_colon[1]
         message = tokenized_by_colon[self.message_column:]
         return location, line, ''.join(message)
@@ -122,7 +125,13 @@ class MyPyAnalyser(LintAnalyzer):
 
         path: Cloned repository path
         """
-        proc = subprocess.Popen(['mypy', '--ignore-missing-imports', '--allow-untyped-globals', '.'],
+        cmd = ['mypy', '--ignore-missing-imports', '--allow-untyped-globals']
+        for folder, _, filenames in os.walk(path):
+            for filename in filenames:
+                if filename.lower().endswith(".py"):
+                    cmd.append("/".join((folder, filename)))
+
+        proc = subprocess.Popen(cmd,
                                 stdout=subprocess.PIPE,
                                 cwd=path)
         output, _ = proc.communicate()
