@@ -1,10 +1,6 @@
 from flask import flash, redirect, render_template, request, url_for
 
-from analyzer.code import CountAnalyzer, PEP8LintAnalyzer, PyflakesLintAnalyzer
-from analyzer.general import analyze
-from analyzer.license import LicenseAnalyzer
-from analyzer.readme import ReadmeAnalyzer
-from analyzer.report import calculate_report_grade
+from analyzer import analyze
 from app import app, mongo
 from vcs.repository import cache, clear, clone, create_repository, is_cached, parse_url
 

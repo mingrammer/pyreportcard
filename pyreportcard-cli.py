@@ -2,7 +2,7 @@
 
 from argparse import ArgumentParser
 
-from analyzer.general import analyze
+from analyzer import analyze
 from command_line.formatting import format_results
 
 if __name__ == "__main__":
