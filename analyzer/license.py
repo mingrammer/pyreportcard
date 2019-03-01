@@ -1,7 +1,9 @@
 import os
 
+from analyzer.report import Grade
 
-class LicenseAnalyzer(object):
+
+class LicenseAnalyzer(Grade):
     """An analyzer for checking license
     
     has_license: Whether if license file exists or not
@@ -9,8 +11,14 @@ class LicenseAnalyzer(object):
 
     LICENSE_PATTERN = ('license', 'license.md', 'license.rst', 'license.txt')
 
+    weight = 0.01
+
     def __init__(self):
         self.has_license = False
+
+    def calculate_score(self, total_line_count):
+        """Calculate the analyzer score"""
+        self.score = 100 if self.has_license else 0
 
     def run(self, path):
         """Check if license file exists

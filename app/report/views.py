@@ -1,9 +1,6 @@
 from flask import flash, redirect, render_template, request, url_for
 
-from analyzer.code import CountAnalyzer, PEP8LintAnalyzer, PyflakesLintAnalyzer
-from analyzer.license import LicenseAnalyzer
-from analyzer.readme import ReadmeAnalyzer
-from analyzer.report import calculate_report_grade
+from analyzer import analyze
 from app import app, mongo
 from vcs.repository import cache, clear, clone, create_repository, is_cached, parse_url
 
@@ -41,30 +38,8 @@ def report(repo_url):
     else:
         path = clone(repo)
 
-        count_analyzer = CountAnalyzer()
-        pep8_analyzer = PEP8LintAnalyzer()
-        pyflakes_analyzer = PyflakesLintAnalyzer()
-        license_analyzer = LicenseAnalyzer()
-        readme_analyzer = ReadmeAnalyzer()
-
-        count_analyzer.run(path)
-        pep8_analyzer.run(path)
-        pyflakes_analyzer.run(path)
-        license_analyzer.run(path)
-        readme_analyzer.run(path)
-
-        pep8_analyzer.calculate_score(count_analyzer.total_line_count)
-        pyflakes_analyzer.calculate_score(count_analyzer.total_line_count)
-
-        repo.save_analysis_results({
-            **count_analyzer.to_document(),
-            **pep8_analyzer.to_document(),
-            **pyflakes_analyzer.to_document(),
-            **license_analyzer.to_document(),
-            **readme_analyzer.to_document(),
-            'report_grade': calculate_report_grade(pep8_analyzer,
-                                                   pyflakes_analyzer)
-        })
+        results = analyze(path)
+        repo.save_analysis_results(results)
 
         cache(repo)
         clear(path)

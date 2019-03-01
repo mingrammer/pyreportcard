@@ -1,7 +1,9 @@
 import os
 
+from analyzer.report import Grade
 
-class ReadmeAnalyzer(object):
+
+class ReadmeAnalyzer(Grade):
     """An analyzer for checking readme
 
     has_readme: Whether if readme file exists or not
@@ -9,8 +11,14 @@ class ReadmeAnalyzer(object):
 
     README_PATTERN = ('readme', 'readme.md', 'readme.rst', 'readme.txt')
 
+    weight = 0.01
+
     def __init__(self):
         self.has_readme = False
+
+    def calculate_score(self, total_line_count):
+        """Calculate the analyzer score"""
+        self.score = 100 if self.has_readme else 0
 
     def run(self, path):
         """Check if readme file exists
