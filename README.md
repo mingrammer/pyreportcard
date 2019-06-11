@@ -17,8 +17,7 @@
 
 > Inspired by [Go Report Card](https://github.com/gojp/goreportcard)
 
-A report card for your Python applications. This inspects python projects which are hosted on Github and analyzes the source code quality (pep8, pyflakes and bandit etc.), existence of license and readme files, and some useful statistics 
-of whole codebase. Then shows its analysis results on web.
+A report card for your Python applications. This analyzes the source code quality (pep8, pyflakes and bandit etc.) of the Python projects which are hosted on GitHub, checks for license and readme files, and provides some statistics. Then shows the results on the web.
 
 You can see our planning for future versions in [here](https://github.com/mingrammer/pyreportcard/projects/1) too.
 
