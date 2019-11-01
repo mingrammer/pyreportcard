@@ -16,7 +16,7 @@ class ReadmeAnalyzer(Grade):
     def __init__(self):
         self.has_readme = False
 
-    def calculate_score(self, total_line_count):
+    def calculate_score(self):
         """Calculate the analyzer score"""
         self.score = 100 if self.has_readme else 0
 
