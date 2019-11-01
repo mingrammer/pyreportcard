@@ -1,0 +1,31 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+bandit = "*"
+click = "*"
+coverage = "*"
+flask-pymongo = "*"
+gitdb2 = "*"
+itsdangerous = "*"
+mypy = "*"
+pbr = "*"
+pep8 = "*"
+pyflakes = "*"
+pymongo = "*"
+six = "*"
+smmap2 = "*"
+stevedore = "*"
+Flask = "*"
+GitPython = "*"
+Jinja2 = "*"
+MarkupSafe = "*"
+PyYAML = "*"
+Werkzeug = "*"
+
+[requires]
+python_version = "3.7"
