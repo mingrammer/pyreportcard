@@ -2,7 +2,8 @@ from flask import flash, redirect, render_template, request, url_for
 
 from analyzer import analyze
 from app import app, mongo
-from vcs.repository import cache, clear, clone, create_repository, is_cached, parse_url
+from vcs.repository import (cache, clear, clone, create_repository, is_cached,
+                            parse_url)
 
 
 @app.route('/')
@@ -21,7 +22,7 @@ def check():
     try:
         parse_url(url)
         return redirect(url_for('report', repo_url=url))
-    except:
+    except ValueError:
         flash('Given repository url is not valid')
         return redirect(url_for('index'))
 

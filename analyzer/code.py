@@ -7,7 +7,7 @@ import subprocess
 from analyzer.report import Grade
 
 
-class LintError(object):
+class LintError:
     """A struct for lint error message
 
     location: File path location of error or warning
@@ -31,7 +31,7 @@ class LintError(object):
 
 class LintAnalyzer(Grade):
     """A common analyzer struct
-    
+
     lint_error_list: LintError list for linting
     """
     document_name = ''
@@ -59,7 +59,7 @@ class LintAnalyzer(Grade):
 
     def _save_lint_results(self, output):
         """Save the linting results
-        
+
         Args:
             output: Output result of linter command
         """
@@ -88,7 +88,7 @@ class PEP8LintAnalyzer(LintAnalyzer):
 
     def run(self, path):
         """Run pep8 command for all python source files
-        
+
         path: Cloned repository path
         """
         proc = subprocess.Popen(['pep8', '.'],
@@ -105,7 +105,7 @@ class PyflakesLintAnalyzer(LintAnalyzer):
 
     def run(self, path):
         """Run pyflakes command for all python source files
-        
+
         path: Cloned repository path
         """
         proc = subprocess.Popen(['pyflakes', '.'],
@@ -138,12 +138,12 @@ class MyPyAnalyser(LintAnalyzer):
         self._save_lint_results(output)
 
 
-class CountAnalyzer(object):
+class CountAnalyzer():
     """An analyzer for counting the lines
-    
+
     file_count:         The number of all python files
     total_line_count:   The number of lines of all python files
-    average_line_count: The average number of lines of all python files 
+    average_line_count: The average number of lines of all python files
     """
 
     def __init__(self):
@@ -153,7 +153,7 @@ class CountAnalyzer(object):
 
     def _count_files(self, path):
         """Count the all python files
-        
+
         path: Cloned repository path
         """
         proc = subprocess.Popen(['find', '.', '-name', '*.py'],
@@ -165,7 +165,7 @@ class CountAnalyzer(object):
 
     def _count_lines(self, path):
         """Count the lines of all python files
-        
+
         path: Cloned repository path
         """
         proc = subprocess.Popen(['find', '.', '-name', '*.py', '-exec', 'cat', '{}', '+'],
@@ -177,7 +177,7 @@ class CountAnalyzer(object):
 
     def run(self, path):
         """Run count-related command for counting the files and lines
-        
+
         path: Cloned repository path
         """
         self.file_count = self._count_files(path)

@@ -3,7 +3,7 @@ A collection of classes or functions for reporting
 """
 
 
-class Grade(object):
+class Grade:
     """Common grade struct for measurable features
 
     weight: Weight value in (0.0, 1.0). Sum of all weights must be 1.0

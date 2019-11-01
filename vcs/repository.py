@@ -14,7 +14,7 @@ from config import Config
 from db.collection import get_repo_collection
 
 
-class GitRepository(object):
+class GitRepository:
     """Scheme for repository information
 
     url:              Repository URL

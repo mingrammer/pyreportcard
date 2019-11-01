@@ -5,7 +5,7 @@ from analyzer.report import Grade
 
 class LicenseAnalyzer(Grade):
     """An analyzer for checking license
-    
+
     has_license: Whether if license file exists or not
     """
 
@@ -22,7 +22,7 @@ class LicenseAnalyzer(Grade):
 
     def run(self, path):
         """Check if license file exists
-        
+
         path: Cloned repository path
         """
         for _, _, filenames in os.walk(path):
