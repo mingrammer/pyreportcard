@@ -8,5 +8,8 @@ python:
 # command to run tests
 services:
   - mongodb
+install:
+  - "pip install pipenv"
+  - "pipenv sync"
 script:
   - python -m unittest discover tests
