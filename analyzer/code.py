@@ -138,7 +138,7 @@ class MyPyAnalyser(LintAnalyzer):
         self._save_lint_results(output)
 
 
-class CountAnalyzer():
+class CountAnalyzer:
     """An analyzer for counting the lines
 
     file_count:         The number of all python files
