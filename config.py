@@ -6,14 +6,14 @@ class Config:
         MONGO_DBNAME = SecretConfig.MONGO_DBNAME
         MONGO_HOST = SecretConfig.MONGO_HOST
         MONGO_PORT = SecretConfig.MONGO_PORT
-        MONGO_URI = 'mongodb://{}:{}'.format(MONGO_HOST, MONGO_PORT)
+        MONGO_URI = 'mongodb://{}:{}/{}'.format(MONGO_HOST, MONGO_PORT, MONGO_DBNAME)
     except ImportError:
         SECRET_KEY = 'local-secret'
         # MongoDB config
         MONGO_DBNAME = 'reportcard'
         MONGO_HOST = 'localhost'
         MONGO_PORT = 27017
-        MONGO_URI = 'mongodb://{}:{}'.format(MONGO_HOST, MONGO_PORT)
+        MONGO_URI = 'mongodb://{}:{}/{}'.format(MONGO_HOST, MONGO_PORT, MONGO_DBNAME)
 
     # Cloning config
     CLONE_TMP_DIR = 'tmp'
