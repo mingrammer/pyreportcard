@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir pipenv \
 USER ${USERNAME}
 EXPOSE 5000
 
-CMD [ "python", "./run.py", "--host", "0.0.0.0", "--debug" ]
+ENTRYPOINT [ "python", "./run.py", "--host", "0.0.0.0" ]
