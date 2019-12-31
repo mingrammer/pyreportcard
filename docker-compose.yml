@@ -1,0 +1,17 @@
+---
+version: "3.7"
+
+services: 
+  db:
+    image: mongo:4.0
+    env_file: .env
+    expose:
+      - "27017"
+  app:
+    build: 
+      context: ./
+    env_file: .env
+    ports:
+      - "5000"
+    depends_on: 
+      - db
