@@ -77,7 +77,7 @@ python3 -m unittest discover tests
 ## Dependencies
 * [PEP8](http://pep8.readthedocs.io/en/release-1.7.x/)
 * [Pyflakes](https://github.com/PyCQA/pyflakes)
-* [Pymongo](https://github.com/mongodb/mongo-python-driver)
+* [PyMongo](https://github.com/mongodb/mongo-python-driver)
 * [Flask](https://github.com/pallets/flask)
 * [MongoDB](https://github.com/mongodb/mongo)
 
