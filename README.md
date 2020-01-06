@@ -71,11 +71,9 @@ comprises of environment variables for configuring the app in the container.
 An example of `.env` is provided below:
 
 ```bash
-cat > .env <<EOF
-DEBUG=1
-FLASK_DEBUG=1
-FLASK_ENVIRONMENT=development
-EOF
+echo "DEBUG=1" >> .env
+echo "FLASK_DEBUG=1" >> .env
+echo "FLASK_ENVIRONMENT=development" >> .env
 ```
 
 To run the app and MongoDB, build the app and run them using `docker-compose`.
