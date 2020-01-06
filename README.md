@@ -66,7 +66,7 @@ class SecretConfig:
 
 It is also possible to run the app and MongoDB in isolated environment using
 Docker and [`docker-compose`](https://docs.docker.com/compose/). Follow the
-instructions above up until setting secret values. Then, create a `.env` file
+instructions above up until setting the secret values. Then, create a `.env` file
 comprises of environment variables for configuring the app in the container.
 An example of `.env` is provided below:
 
