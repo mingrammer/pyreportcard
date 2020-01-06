@@ -64,7 +64,32 @@ class SecretConfig:
 * Run server by `python3 run.py`.
 * Go `127.0.0.1:5000` and just use it.
 
-*Note: Now, you can run it on local system only, But we'll provide isolated environments using Docker for installing and running soon.*
+It is also possible to run the app and MongoDB in isolated environment using
+Docker and [`docker-compose`](https://docs.docker.com/compose/). Follow the
+instructions above up until setting secret values. Then, create a `.env` file
+comprises of environment variables for configuring the app in the container.
+An example of `.env` is provided below:
+
+```bash
+cat > .env <<EOF
+DEBUG=1
+FLASK_DEBUG=1
+FLASK_ENVIRONMENT=development
+EOF
+```
+
+To run the app and MongoDB, build the app and run them using `docker-compose`.
+By default, the app will bind to port `5000` and can be accessed via `localhost`,
+e.g. `127.0.0.1:5000`. If the port conflicted with other running apps, feel free
+to modify the port binding in `docker-compose.yml` and re-run the app.
+
+```bash
+docker-compose build
+docker-compose up -d
+```
+
+> Reminder: If you are going to run the app in production, do not forget to turn
+> off DEBUG flags in `.env` file and set the environment to `production`.
 
 ## Tests
 
