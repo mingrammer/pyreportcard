@@ -84,8 +84,7 @@ e.g. `127.0.0.1:5000`. If the port conflicted with other running apps, feel free
 to modify the port binding in `docker-compose.yml` and re-run the app.
 
 ```bash
-docker-compose build
-docker-compose up -d
+docker-compose up --build -d
 ```
 
 > Reminder: If you are going to run the app in production, do not forget to turn
