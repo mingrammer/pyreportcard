@@ -14,10 +14,13 @@ from analyzer.report import calculate_report_grade
 
 
 ANALYSER_CLASSES = (
-    LicenseAnalyzer,
     MyPyAnalyser,
     PEP8LintAnalyzer,
     PyflakesLintAnalyzer,
+)
+
+DOC_ANALYSER_CLASSES = (
+    LicenseAnalyzer,
     ReadmeAnalyzer,
 )
 
@@ -37,11 +40,19 @@ def analyze(path):
 
     results = count_analyzer.to_document()
     analyzers = []
+
     for analyzer_class in ANALYSER_CLASSES:
         analyzer = analyzer_class()
         analyzers.append(analyzer)
         analyzer.run(path)
         analyzer.calculate_score(line_count)
+        results.update(analyzer.to_document())
+
+    for analyzer_class in DOC_ANALYSER_CLASSES:
+        analyzer = analyzer_class()
+        analyzers.append(analyzer)
+        analyzer.run(path)
+        analyzer.calculate_score()
         results.update(analyzer.to_document())
 
     results["report_grade"] = calculate_report_grade(*analyzers)

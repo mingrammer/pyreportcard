@@ -21,8 +21,6 @@ A report card for your Python applications. This analyzes the source code qualit
 
 You can see our planning for future versions in [here](https://github.com/mingrammer/pyreportcard/projects/1) too.
 
-*Note: I'm preparing the supports of isolated running environments with Docker. I'll add it soon*
-
 ## ScreenShots
 
 ![main](screenshots/main.png)
@@ -64,7 +62,29 @@ class SecretConfig:
 * Run server by `python3 run.py`.
 * Go `127.0.0.1:5000` and just use it.
 
-*Note: Now, you can run it on local system only, But we'll provide isolated environments using Docker for installing and running soon.*
+It is also possible to run the app and MongoDB in isolated environment using
+Docker and [`docker-compose`](https://docs.docker.com/compose/). Follow the
+instructions above up until setting the secret values. Then, create a `.env` file
+comprises of environment variables for configuring the app in the container.
+An example of `.env` is provided below:
+
+```bash
+echo "DEBUG=1" >> .env
+echo "FLASK_DEBUG=1" >> .env
+echo "FLASK_ENVIRONMENT=development" >> .env
+```
+
+To run the app and MongoDB, build the app and run them using `docker-compose`.
+By default, the app will bind to port `5000` and can be accessed via `localhost`,
+e.g. `127.0.0.1:5000`. If the port conflicted with other running apps, feel free
+to modify the port binding in `docker-compose.yml` and re-run the app.
+
+```bash
+docker-compose up --build -d
+```
+
+> Reminder: If you are going to run the app in production, do not forget to turn
+> off DEBUG flags in `.env` file and set the environment to `production`.
 
 ## Tests
 
@@ -77,7 +97,7 @@ python3 -m unittest discover tests
 ## Dependencies
 * [PEP8](http://pep8.readthedocs.io/en/release-1.7.x/)
 * [Pyflakes](https://github.com/PyCQA/pyflakes)
-* [Pymongo](https://github.com/mongodb/mongo-python-driver)
+* [PyMongo](https://github.com/mongodb/mongo-python-driver)
 * [Flask](https://github.com/pallets/flask)
 * [MongoDB](https://github.com/mongodb/mongo)
 
